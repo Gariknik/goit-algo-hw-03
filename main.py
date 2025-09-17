@@ -37,7 +37,9 @@ def get_numbers_ticket(min: int, max: int, quantity: int) -> list:
         Якщо параметри не відповідають заданим обмеженням, функція повертає пустий список.
     """
     # Перевірка аргументів у відповідності до мимок. Аргументи повинні бути цілими числами, min - не меньше 1, max - не быльше 1000
-    if all([type(el) == int for el in (min, max, quantity)]) and min > 0 and max <= 1000:
+    if all([type(el) == int for el in (min, max, quantity)]) \
+        and (0 < min < max) and (min < max <= 1000) \
+        and max - min > quantity:
         return sorted(sample(range(min, max+1), k=quantity)) # результат відсортований список рандомних унікальних чисел 
     else:
         return [] # результат якщо аргументи не пройшли перевірку
@@ -45,7 +47,7 @@ def get_numbers_ticket(min: int, max: int, quantity: int) -> list:
     
      
     
-print(get_numbers_ticket(1, 49, 6))
+print([get_numbers_ticket(*el) for el in ((-10, 10, 5), (1000, 1200, 10), (10, 4, 5), (10,14,6))])
 
 
 # 3 Розробіть функцію normalize_phone(phone_number), що нормалізує телефонні номери до стандартного формату
