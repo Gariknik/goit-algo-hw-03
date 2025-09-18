@@ -38,8 +38,8 @@ def get_numbers_ticket(min: int, max: int, quantity: int) -> list:
     """
     # Перевірка аргументів у відповідності до мимок. Аргументи повинні бути цілими числами, min - не меньше 1, max - не быльше 1000
     if all([type(el) == int for el in (min, max, quantity)]) \
-        and (0 < min < max) and (min < max <= 1000) \
-        and max - min > quantity:
+        and (0 < min < max <= 1000) \
+        and max - min >= quantity:
         return sorted(sample(range(min, max+1), k=quantity)) # результат відсортований список рандомних унікальних чисел 
     else:
         return [] # результат якщо аргументи не пройшли перевірку
